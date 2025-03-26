@@ -8,4 +8,34 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\breakingbad\GusFring.png" />
+    <None Remove="Images\breakingbad\Hank.png" />
+    <None Remove="Images\breakingbad\JessePinkman.png" />
+    <None Remove="Images\breakingbad\SaulGoodman.png" />
+    <None Remove="Images\breakingbad\SkylerWhite.png" />
+    <None Remove="Images\breakingbad\WalterWhite.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\breakingbad\GusFring.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\breakingbad\Hank.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\breakingbad\JessePinkman.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\breakingbad\SaulGoodman.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\breakingbad\SkylerWhite.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\breakingbad\WalterWhite.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

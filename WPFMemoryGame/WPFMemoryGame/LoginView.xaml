@@ -3,20 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPFMemoryGame"
-        mc:Ignorable="d" Height="450" Width="800">
+        xmlns:local="clr-namespace:WPFMemoryGame" d:DataContext="{d:DesignInstance Type=local:LoginView}"
+             mc:Ignorable="d" Height="450" Width="800">
     <Grid Background="Gray">
         <Grid.RowDefinitions>
             <!-- Welcome text-->
             <RowDefinition Height="Auto"/>
             <!-- Users panel + user image/selector -->
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="260"/>
+            <!-- New user, delete user, play and cancel buttons-->
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <!-- Welcome text-->
-        <TextBlock Grid.Row="1" Text="Welcome to MemoryGame!!!" FontSize="24" FontWeight="Medium" Foreground="DarkOliveGreen" HorizontalAlignment="Center" Padding="14"/>
+        <TextBlock Grid.Row="0" Text="Welcome to MemoryGame!!!" FontSize="24" FontWeight="Medium" Foreground="DarkOliveGreen" HorizontalAlignment="Center" Padding="14"/>
         <!-- Users panel + user image/selector -->
-        <Grid Grid.Row="2" Background="Gray">
+        <Grid Grid.Row="1" Background="Gray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -34,7 +35,43 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Source="{Binding CurrentImage}" Width="200" Height="200" Stretch="Uniform"/>
+
+                <!-- Buttons for selecting the image-->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Content="&lt;&lt;" Width="80" Padding="4" Margin="43,10,60,10" Background="DarkOliveGreen" Command="{Binding LeftButtonClick}"/>
+                    <Button Grid.Column="1" Content="&gt;&gt;" Width="80" Padding="4" Margin="60,10,60,10" Background="DarkOliveGreen" Command="{Binding RightButtonClick}"/>
+
+                </Grid>
+            </Grid>
         </Grid>
+
+        <!-- New user, delete user, play and cancel buttons-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Add User" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen"/>
+            <Button Grid.Column="1" Content="Remove User" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen"/>
+            <Button Grid.Column="2" Content="Play" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen"/>
+            <Button Grid.Column="3" Content="Cancel" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen"/>
+        </Grid>
+
 
     </Grid>
 </UserControl>
