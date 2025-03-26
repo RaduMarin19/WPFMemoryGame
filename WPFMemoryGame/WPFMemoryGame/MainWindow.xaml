@@ -6,7 +6,20 @@
         xmlns:local="clr-namespace:WPFMemoryGame"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="Gray">
+        <Grid.RowDefinitions>
+            <!--First Row - help/about -->
+            <RowDefinition Height="Auto"/>
+            <!-- Current View-->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <!--First Row - help/about -->
+        <Menu Grid.Row="0" Height="20" Background="DarkGray">
+            <MenuItem Header="Help">
+                <MenuItem Header="About" Command="{Binding AboutRadu}"/>
+            </MenuItem>
+        </Menu>
+        <ContentControl Grid.Row ="1" Content="{Binding CurrentView}"/>
     </Grid>
 </Window>
