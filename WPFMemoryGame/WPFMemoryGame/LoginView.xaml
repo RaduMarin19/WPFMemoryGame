@@ -5,6 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFMemoryGame" d:DataContext="{d:DesignInstance Type=local:LoginView}"
              mc:Ignorable="d" Height="450" Width="800">
+    <UserControl.Resources>
+        <local:UserDC x:Key="UserDataContextInstance"/>
+    </UserControl.Resources>
     <Grid Background="Gray">
         <Grid.RowDefinitions>
             <!-- Welcome text-->
@@ -24,18 +27,29 @@
             </Grid.ColumnDefinitions>
 
             <!-- User List-->
-            <ListBox ItemsSource="{Binding UserList}" SelectedItem="{Binding SelectedUser, Mode=TwoWay}" Grid.Row="0" Background="Gray">
+            <ListBox ItemsSource="{Binding Users}"  DataContext="{StaticResource UserDataContextInstance}" Background="Gray">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Background="Gray">
-                            <Button Content="{Binding}" VerticalAlignment="Center" Width="Auto" Command="{Binding DataContext.Users, RelativeSource={RelativeSource AncestorType=Window}}"
-                        CommandParameter="{Binding}" />
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" Margin="5"/>
+
+                            <ItemsControl ItemsSource="{Binding Properties}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Margin="5"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-
-
+            
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -66,10 +80,10 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Add User" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen"/>
-            <Button Grid.Column="1" Content="Remove User" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen"/>
-            <Button Grid.Column="2" Content="Play" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen"/>
-            <Button Grid.Column="3" Content="Cancel" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen"/>
+            <Button Grid.Column="0" Content="Add User" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding AddUser}"/>
+            <Button Grid.Column="1" Content="Remove User" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding RemoveUser}"/>
+            <Button Grid.Column="2" Content="Play" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding Play}"/>
+            <Button Grid.Column="3" Content="Cancel" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding Cancel}"/>
         </Grid>
 
 

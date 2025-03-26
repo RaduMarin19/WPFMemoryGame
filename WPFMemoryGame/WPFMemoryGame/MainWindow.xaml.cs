@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,7 +23,7 @@ namespace WPFMemoryGame
             get { return _currentView; }
             set { 
                 _currentView = value;
-                OnPropertyChanged(nameof(CurrentView));
+                OnPropertyChanged();
             }
         }
         public MainWindow()
@@ -43,7 +44,7 @@ namespace WPFMemoryGame
         public ICommand AboutRadu { get; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

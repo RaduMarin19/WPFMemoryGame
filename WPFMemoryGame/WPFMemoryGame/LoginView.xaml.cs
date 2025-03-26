@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +23,15 @@ namespace WPFMemoryGame
     /// </summary>
     public partial class LoginView : UserControl, INotifyPropertyChanged
     {
+        public UserDC UserDataContext { get; set; }
+        private List<String> _imagePaths;
+        private int _currentImageIndex;
+        public ICommand LeftButtonClick { get; }
+        public ICommand RightButtonClick { get; }
+        public ICommand AddUser { get; }
+        public ICommand RemoveUser { get; }
+        public ICommand Play { get; }
+        public ICommand Cancel { get; }
         public LoginView()
         {
             InitializeComponent();
@@ -29,6 +39,9 @@ namespace WPFMemoryGame
             DataContext = this;
             LeftButtonClick = new RelayCommand(OnLeftClick);
             RightButtonClick = new RelayCommand(OnRightClick);
+            AddUser = new RelayCommand(OnAddUserClick);
+
+            UserDataContext = new UserDC();
         }
         public ImageSource CurrentImage
         {
@@ -63,9 +76,10 @@ namespace WPFMemoryGame
                 _imagePaths = new List<string>();
             }
         }
-        private List<String> _imagePaths;
-        private int _currentImageIndex;
-        public ICommand LeftButtonClick { get; }
+        private void OnAddUserClick(object obj)
+        {
+
+        }
         private void OnLeftClick(object obj)
         {
             _currentImageIndex--;
@@ -75,7 +89,6 @@ namespace WPFMemoryGame
             }
             OnPropertyChanged(nameof(CurrentImage));
         }
-        public ICommand RightButtonClick { get; }
         private void OnRightClick(object obj)
         {
             _currentImageIndex++;
@@ -87,7 +100,7 @@ namespace WPFMemoryGame
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
