@@ -10,15 +10,39 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\back.jpg" />
     <None Remove="Images\breakingbad\GusFring.png" />
     <None Remove="Images\breakingbad\Hank.png" />
     <None Remove="Images\breakingbad\JessePinkman.png" />
     <None Remove="Images\breakingbad\SaulGoodman.png" />
     <None Remove="Images\breakingbad\SkylerWhite.png" />
     <None Remove="Images\breakingbad\WalterWhite.png" />
+    <None Remove="Images\game_breaking_bad\2f3ef720-f9b5-480b-ad88-7ef54f1cb728.jpeg" />
+    <None Remove="Images\game_breaking_bad\3d339f33-0ebd-4bbc-ab31-98dceedc93ca.jpeg" />
+    <None Remove="Images\game_breaking_bad\5f56efc0-f54c-40df-8db3-d2f7fb410314.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad %281%29.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad %2810%29.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad %2811%29.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad %2812%29.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad %2813%29.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad %282%29.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad %283%29.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad %284%29.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad %285%29.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad %286%29.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad %287%29.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad %288%29.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad %289%29.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad.jpeg" />
+    <None Remove="Images\game_breaking_bad\breaking_bad.jpg" />
+    <None Remove="Images\game_breaking_bad\Jesse And Jane.jpeg" />
+    <None Remove="Images\game_breaking_bad\mike ehrmantraut.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Images\back.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\breakingbad\GusFring.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -35,6 +59,60 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\breakingbad\WalterWhite.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\2f3ef720-f9b5-480b-ad88-7ef54f1cb728.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\3d339f33-0ebd-4bbc-ab31-98dceedc93ca.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\5f56efc0-f54c-40df-8db3-d2f7fb410314.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\breaking_bad (1).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\breaking_bad (10).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\breaking_bad (11).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\breaking_bad (12).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\breaking_bad (13).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\breaking_bad (2).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\breaking_bad (3).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\breaking_bad (5).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\breaking_bad (6).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\breaking_bad (7).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\breaking_bad (8).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\breaking_bad (9).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\breaking_bad.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\Jesse And Jane.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_breaking_bad\mike ehrmantraut.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

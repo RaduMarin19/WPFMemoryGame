@@ -23,6 +23,7 @@ namespace MemoryWPF
         public GameView()
         {
             InitializeComponent();
+            this.DataContext = new GameViewModel();
         }
     }
 }

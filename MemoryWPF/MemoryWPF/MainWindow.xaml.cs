@@ -34,7 +34,8 @@ namespace MemoryWPF
         {
             InitializeComponent();
             this.DataContext = this;
-            CurrentView = new LoginView();
+            /*CurrentView = new LoginView(this);*///Temp for testing
+            CurrentView = new GameView();
             AboutRadu = new RelayCommand(About);
         }
 

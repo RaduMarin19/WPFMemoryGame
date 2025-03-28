@@ -20,10 +20,10 @@ namespace MemoryWPF
     /// </summary>
     public partial class LoginView : UserControl
     {
-        public LoginView()
+        public LoginView(MainWindow mainWindow)
         {
             InitializeComponent();
-            this.DataContext = new LoginViewModel();
+            this.DataContext = new LoginViewModel(mainWindow);
         }
 
     }

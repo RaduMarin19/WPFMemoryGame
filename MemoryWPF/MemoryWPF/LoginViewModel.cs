@@ -17,6 +17,7 @@ namespace MemoryWPF
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
+        private MainWindow _mainWindow;
         private object _usersOrAddUser;
         private List<String> _imagePaths;
         private int _currentImageIndex;
@@ -30,8 +31,9 @@ namespace MemoryWPF
         public ICommand Cancel { get; }
         public ICommand Exit { get; }
         public ICommand Ok { get; }
-        public LoginViewModel()
+        public LoginViewModel(MainWindow mainWindow)
         {
+            _mainWindow = mainWindow;
             LoadImages();
             LeftButtonClick = new RelayCommand(OnLeftClick, CanChooseImage);
             RightButtonClick = new RelayCommand(OnRightClick, CanChooseImage);
@@ -87,7 +89,7 @@ namespace MemoryWPF
         {
             get
             {
-                if (_imagePaths.Count == 0) return null;
+                if (UsersOrAddUser is UserListView && (_imagePaths.Count == 0 || Users.Count ==0)) return null;
 
                 var image = new BitmapImage();
                 image.BeginInit();
@@ -113,8 +115,6 @@ namespace MemoryWPF
             string imageFolder = System.IO.Path.Combine(
                 System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
                 "Images\\breakingbad");
-            Console.Write(imageFolder);
-
             if (Directory.Exists(imageFolder))
             {
                 _imagePaths = Directory.GetFiles(imageFolder, "*.png").ToList();
@@ -128,7 +128,7 @@ namespace MemoryWPF
         }
         private void OnPlayClick(object obj)
         {
-
+            _mainWindow.CurrentView = new GameView();
         }
         private void OnRemoveUserClick(object obj)
         {
