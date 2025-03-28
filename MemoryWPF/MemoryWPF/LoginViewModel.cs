@@ -1,47 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Media;
+using System.Windows;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-namespace WPFMemoryGame
+namespace MemoryWPF
 {
-    /// <summary>
-    /// Interaction logic for LoginView.xaml
-    /// </summary>
-    public partial class LoginView : UserControl, INotifyPropertyChanged
+    public class LoginViewModel : INotifyPropertyChanged
     {
-        public UserDC UserDataContext { get; set; }
+        private object _usersOrAddUser;
         private List<String> _imagePaths;
         private int _currentImageIndex;
+        private string _username;
         public ICommand LeftButtonClick { get; }
         public ICommand RightButtonClick { get; }
         public ICommand AddUser { get; }
         public ICommand RemoveUser { get; }
         public ICommand Play { get; }
         public ICommand Cancel { get; }
-        public LoginView()
+        public ICommand Ok { get; }
+        public LoginViewModel()
         {
-            InitializeComponent();
             LoadImages();
-            DataContext = this;
             LeftButtonClick = new RelayCommand(OnLeftClick);
             RightButtonClick = new RelayCommand(OnRightClick);
             AddUser = new RelayCommand(OnAddUserClick);
-
-            UserDataContext = new UserDC();
+            Ok = new RelayCommand(OnOkClick);
+            Users = new ObservableCollection<UserModel>();
+            UsersOrAddUser = new UserListView();
+        }
+        public UserModel CurrentUser { get; set; }
+        public ObservableCollection<UserModel> Users { get; set; }
+        public object UsersOrAddUser
+        {
+            get { return _usersOrAddUser; }
+            set
+            {
+                _usersOrAddUser = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Username
+        {
+            get
+            {
+                return _username;
+            }
+            set
+            {
+                _username = value;
+                OnPropertyChanged();
+            }
         }
         public ImageSource CurrentImage
         {
@@ -76,9 +94,16 @@ namespace WPFMemoryGame
                 _imagePaths = new List<string>();
             }
         }
+        private void OnOkClick(object obj)
+        {
+            UserModel temp = new UserModel(_username, _currentImageIndex);
+            Users.Add(temp);
+            UsersOrAddUser = new UserListView();
+            Username = "";
+        }
         private void OnAddUserClick(object obj)
         {
-
+            UsersOrAddUser = new AddUser();
         }
         private void OnLeftClick(object obj)
         {
@@ -92,7 +117,7 @@ namespace WPFMemoryGame
         private void OnRightClick(object obj)
         {
             _currentImageIndex++;
-            if(_currentImageIndex > _imagePaths.Count - 1)
+            if (_currentImageIndex > _imagePaths.Count - 1)
             {
                 _currentImageIndex = 0;
             }

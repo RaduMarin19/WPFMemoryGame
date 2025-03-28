@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace WPFMemoryGame
+namespace MemoryWPF
 {
     /// <summary>
     /// Interaction logic for App.xaml

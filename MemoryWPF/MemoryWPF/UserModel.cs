@@ -6,18 +6,20 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFMemoryGame
+namespace MemoryWPF
 {
-    public class User: INotifyPropertyChanged
+    public class UserModel : INotifyPropertyChanged
     {
-        public User(string name, int imageIndex)
+        public UserModel(string name, int imageIndex)
         {
-            _name= name;
+            _name = name;
             ImageIndex = imageIndex;
         }
-        public string Name { 
-            get { return _name; } 
-            set { 
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
                 _name = value;
                 OnPropertyChanged();
             }

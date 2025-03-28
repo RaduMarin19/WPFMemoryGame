@@ -1,13 +1,11 @@
-﻿<UserControl x:Class="WPFMemoryGame.LoginView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPFMemoryGame" d:DataContext="{d:DesignInstance Type=local:LoginView}"
-             mc:Ignorable="d" Height="450" Width="800">
-    <UserControl.Resources>
-        <local:UserDC x:Key="UserDataContextInstance"/>
-    </UserControl.Resources>
+﻿<UserControl x:Class="MemoryWPF.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MemoryWPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="Gray">
         <Grid.RowDefinitions>
             <!-- Welcome text-->
@@ -27,29 +25,8 @@
             </Grid.ColumnDefinitions>
 
             <!-- User List-->
-            <ListBox ItemsSource="{Binding Users}"  DataContext="{StaticResource UserDataContextInstance}" Background="Gray">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" Margin="5"/>
+            <ContentControl Grid.Column="0" Content="{Binding UsersOrAddUser}"/>
 
-                            <ItemsControl ItemsSource="{Binding Properties}">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal"/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding}" Margin="5"/>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>

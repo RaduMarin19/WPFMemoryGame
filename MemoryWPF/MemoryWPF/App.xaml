@@ -1,7 +1,7 @@
-﻿<Application x:Class="WPFMemoryGame.App"
+﻿<Application x:Class="MemoryWPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WPFMemoryGame"
+             xmlns:local="clr-namespace:MemoryWPF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          
