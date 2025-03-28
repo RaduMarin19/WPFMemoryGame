@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 
 namespace MemoryWPF
 {
@@ -45,7 +46,7 @@ namespace MemoryWPF
             Exit = new RelayCommand(OnExitClick);
             Username = "";
 
-            Users = new ObservableCollection<UserModel>();
+            LoadUsers();
             UsersOrAddUser = new UserListView();
         }
         public UserModel CurrentUser { 
@@ -95,7 +96,7 @@ namespace MemoryWPF
                 image.BeginInit();
                 if (IsUserSelected(""))
                 {
-                    image.UriSource = new Uri(_imagePaths[CurrentUser.ImageIndex], UriKind.Absolute);
+                    image.UriSource = new Uri(CurrentUser.ImagePath, UriKind.Absolute);
                 }
                 else
                 {
@@ -110,10 +111,29 @@ namespace MemoryWPF
         {
             return _usersOrAddUser is AddUser;
         }
+        private void LoadUsers()
+        {
+            string usersPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            Users = new ObservableCollection<UserModel>();
+            if (Directory.Exists(usersPath))
+            {
+                List<string> userFiles = Directory.GetFiles(usersPath, "*User.json").ToList();
+                foreach(string file in userFiles)
+                {
+                    string jsonContent = File.ReadAllText(file);
+                    try { 
+                        UserModel temp = JsonSerializer.Deserialize<UserModel>(jsonContent);
+                        Users.Add(temp);
+                    }
+                    catch { Console.WriteLine("Error deserializing: " + file); }
+                    
+                }
+            }
+        }
         private void LoadImages()
         {
-            string imageFolder = System.IO.Path.Combine(
-                System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+            string imageFolder = Path.Combine(
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
                 "Images\\breakingbad");
             if (Directory.Exists(imageFolder))
             {
@@ -128,10 +148,16 @@ namespace MemoryWPF
         }
         private void OnPlayClick(object obj)
         {
-            _mainWindow.CurrentView = new GameView();
+            _mainWindow.CurrentView = new UserPageView(CurrentUser);
         }
         private void OnRemoveUserClick(object obj)
         {
+            try
+            {
+                string filePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + CurrentUser.Name + "User.json";
+                File.Delete(filePath);
+            }   
+            catch { Console.WriteLine("Error removing file"); }
             Users.Remove(CurrentUser);
         }
         private bool IsUserSelected(object obj)
@@ -153,8 +179,9 @@ namespace MemoryWPF
         }
         private void OnOkClick(object obj)
         {
-            UserModel temp = new UserModel(_username, _currentImageIndex);
+            UserModel temp = new UserModel(_username, _imagePaths[_currentImageIndex]);
             Users.Add(temp);
+            temp.Save();
             UsersOrAddUser = new UserListView();
             Username = "";
         }

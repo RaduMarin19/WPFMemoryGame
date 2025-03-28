@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="MemoryWPF.UserPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MemoryWPF" d:DataContext="{d:DesignInstance Type=local:UserPageViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:PathToImageConverter x:Key="PathToImageConverter"/>
+    </UserControl.Resources>
+    <Grid Background="Gray">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <DockPanel Grid.Column="0" Background="Gray">
+                <Menu DockPanel.Dock="Top" Background="Gray">
+                    <MenuItem Header="Category">
+                        <MenuItem Header="Breaking bad"/>
+                        <MenuItem Header="Breaking bad"/>
+                        <MenuItem Header="Breaking bad"/>
+                    </MenuItem>
+                </Menu>
+            </DockPanel>
+            <Image Grid.Column="1" Source="{Binding User.ImagePath, Converter={StaticResource PathToImageConverter}}" Width="200" Height="200" Stretch="Uniform"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="New Game" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding NewGame}"/>
+            <Button Grid.Column="1" Content="Open Game" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding OpenGame}"/>
+            <Button Grid.Column="2" Content="Save Game" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding SaveGame}"/>
+            <Button Grid.Column="3" Content="Statistics" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding Statistics}"/>
+            <Button Grid.Column="4" Content="Exit" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding Exit}"/>
+        </Grid>
+    </Grid>
+</UserControl>
