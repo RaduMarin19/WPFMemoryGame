@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListBox ItemsSource="{Binding Users}" Background="Gray">
+        <ListBox ItemsSource="{Binding Users}" SelectedItem="{Binding CurrentUser, Mode=TwoWay}" Background="Gray">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>

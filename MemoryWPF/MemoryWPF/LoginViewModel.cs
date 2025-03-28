@@ -34,7 +34,12 @@ namespace MemoryWPF
             LeftButtonClick = new RelayCommand(OnLeftClick);
             RightButtonClick = new RelayCommand(OnRightClick);
             AddUser = new RelayCommand(OnAddUserClick);
-            Ok = new RelayCommand(OnOkClick);
+            Ok = new RelayCommand(OnOkClick,CanClickOk);
+            Cancel = new RelayCommand(OnCancelClick);
+            RemoveUser = new RelayCommand(OnRemoveUserClick,CanClickRemoveUser);
+
+            Username = "";
+
             Users = new ObservableCollection<UserModel>();
             UsersOrAddUser = new UserListView();
         }
@@ -59,6 +64,7 @@ namespace MemoryWPF
             {
                 _username = value;
                 OnPropertyChanged();
+                ((RelayCommand)Ok).RaiseCanExecuteChanged();
             }
         }
         public ImageSource CurrentImage
@@ -93,6 +99,23 @@ namespace MemoryWPF
             {
                 _imagePaths = new List<string>();
             }
+        }
+        private void OnRemoveUserClick(object obj)
+        {
+            Users.Remove(CurrentUser);
+        }
+        private bool CanClickRemoveUser(object obj)
+        {
+            return CurrentUser != null;
+        }
+        private void OnCancelClick(object obj)
+        {
+            UsersOrAddUser = new UserListView();
+            Username = "";
+        }
+        private bool CanClickOk(object obj)
+        {
+            return !string.IsNullOrWhiteSpace(_username);
         }
         private void OnOkClick(object obj)
         {
