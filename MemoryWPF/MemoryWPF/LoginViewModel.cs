@@ -21,12 +21,14 @@ namespace MemoryWPF
         private List<String> _imagePaths;
         private int _currentImageIndex;
         private string _username;
+        private UserModel _currentUser;
         public ICommand LeftButtonClick { get; }
         public ICommand RightButtonClick { get; }
         public ICommand AddUser { get; }
         public ICommand RemoveUser { get; }
         public ICommand Play { get; }
         public ICommand Cancel { get; }
+        public ICommand Exit { get; }
         public ICommand Ok { get; }
         public LoginViewModel()
         {
@@ -34,16 +36,27 @@ namespace MemoryWPF
             LeftButtonClick = new RelayCommand(OnLeftClick);
             RightButtonClick = new RelayCommand(OnRightClick);
             AddUser = new RelayCommand(OnAddUserClick);
-            Ok = new RelayCommand(OnOkClick,CanClickOk);
+            Ok = new RelayCommand(OnOkClick, CanClickOk);
             Cancel = new RelayCommand(OnCancelClick);
-            RemoveUser = new RelayCommand(OnRemoveUserClick,CanClickRemoveUser);
-
+            RemoveUser = new RelayCommand(OnRemoveUserClick, IsUserSelected);
+            Play = new RelayCommand(OnPlayClick, IsUserSelected);
+            Exit = new RelayCommand(OnExitClick);
             Username = "";
 
             Users = new ObservableCollection<UserModel>();
             UsersOrAddUser = new UserListView();
         }
-        public UserModel CurrentUser { get; set; }
+        public UserModel CurrentUser { 
+            get{
+                return _currentUser;
+            } 
+            set{
+                _currentUser = value;
+                OnPropertyChanged();
+                ((RelayCommand)RemoveUser).RaiseCanExecuteChanged();
+                ((RelayCommand)Play).RaiseCanExecuteChanged();
+            } 
+        }
         public ObservableCollection<UserModel> Users { get; set; }
         public object UsersOrAddUser
         {
@@ -100,13 +113,21 @@ namespace MemoryWPF
                 _imagePaths = new List<string>();
             }
         }
+        private void OnPlayClick(object obj)
+        {
+
+        }
         private void OnRemoveUserClick(object obj)
         {
             Users.Remove(CurrentUser);
         }
-        private bool CanClickRemoveUser(object obj)
+        private bool IsUserSelected(object obj)
         {
             return CurrentUser != null;
+        }
+        private void OnExitClick(object obj)
+        {
+            Environment.Exit(0);
         }
         private void OnCancelClick(object obj)
         {

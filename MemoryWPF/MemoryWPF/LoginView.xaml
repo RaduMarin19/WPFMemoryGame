@@ -60,7 +60,7 @@
             <Button Grid.Column="0" Content="Add User" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding AddUser}"/>
             <Button Grid.Column="1" Content="Remove User" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding RemoveUser}"/>
             <Button Grid.Column="2" Content="Play" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding Play}"/>
-            <Button Grid.Column="3" Content="Cancel" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding Cancel}"/>
+            <Button Grid.Column="3" Content="Exit" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding Exit}"/>
         </Grid>
 
 
