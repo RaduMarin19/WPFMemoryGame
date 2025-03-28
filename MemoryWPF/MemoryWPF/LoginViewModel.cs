@@ -33,8 +33,8 @@ namespace MemoryWPF
         public LoginViewModel()
         {
             LoadImages();
-            LeftButtonClick = new RelayCommand(OnLeftClick);
-            RightButtonClick = new RelayCommand(OnRightClick);
+            LeftButtonClick = new RelayCommand(OnLeftClick, CanChooseImage);
+            RightButtonClick = new RelayCommand(OnRightClick, CanChooseImage);
             AddUser = new RelayCommand(OnAddUserClick);
             Ok = new RelayCommand(OnOkClick, CanClickOk);
             Cancel = new RelayCommand(OnCancelClick);
@@ -55,6 +55,7 @@ namespace MemoryWPF
                 OnPropertyChanged();
                 ((RelayCommand)RemoveUser).RaiseCanExecuteChanged();
                 ((RelayCommand)Play).RaiseCanExecuteChanged();
+                OnPropertyChanged(nameof(CurrentImage));
             } 
         }
         public ObservableCollection<UserModel> Users { get; set; }
@@ -65,6 +66,8 @@ namespace MemoryWPF
             {
                 _usersOrAddUser = value;
                 OnPropertyChanged();
+                ((RelayCommand)LeftButtonClick).RaiseCanExecuteChanged();
+                ((RelayCommand)RightButtonClick).RaiseCanExecuteChanged();
             }
         }
         public string Username
@@ -88,13 +91,23 @@ namespace MemoryWPF
 
                 var image = new BitmapImage();
                 image.BeginInit();
-                image.UriSource = new Uri(_imagePaths[_currentImageIndex], UriKind.Absolute);
+                if (IsUserSelected(""))
+                {
+                    image.UriSource = new Uri(_imagePaths[CurrentUser.ImageIndex], UriKind.Absolute);
+                }
+                else
+                {
+                    image.UriSource = new Uri(_imagePaths[_currentImageIndex], UriKind.Absolute);
+                }
                 image.CacheOption = BitmapCacheOption.OnLoad;
                 image.EndInit();
                 return image;
             }
         }
-
+        private bool CanChooseImage(object obj)
+        {
+            return _usersOrAddUser is AddUser;
+        }
         private void LoadImages()
         {
             string imageFolder = System.IO.Path.Combine(
@@ -147,6 +160,7 @@ namespace MemoryWPF
         }
         private void OnAddUserClick(object obj)
         {
+            CurrentUser = null;
             UsersOrAddUser = new AddUser();
         }
         private void OnLeftClick(object obj)
