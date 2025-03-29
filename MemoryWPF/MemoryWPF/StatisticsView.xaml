@@ -1,0 +1,30 @@
+﻿<Window x:Class="MemoryWPF.StatisticsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MemoryWPF" d:DataContext="{d:DesignInstance Type=local:StatisticsViewModel}"
+        mc:Ignorable="d"
+        Title="Statistics" Height="200" Width="300">
+    <Border BorderBrush="DarkOliveGreen" BorderThickness="20">
+        <Grid Background="Gray">
+            <ListBox ItemsSource="{Binding Users}" Background="Gray">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} - {1} - {2}">
+                                        <Binding Path="Name"/>
+                                        <Binding Path="GamesPlayed"/>
+                                        <Binding Path="GamesWon"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Border>
+</Window>

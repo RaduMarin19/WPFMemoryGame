@@ -20,10 +20,12 @@ namespace MemoryWPF
     {
         private MainWindow _mainWindow;
         private object _usersOrAddUser;
-        private List<String> _imagePaths;
         private int _currentImageIndex;
         private string _username;
         private UserModel _currentUser;
+        private List<String> _imagePaths;
+        public ObservableCollection<UserModel> Users { get; set; }
+
         public ICommand LeftButtonClick { get; }
         public ICommand RightButtonClick { get; }
         public ICommand AddUser { get; }
@@ -61,7 +63,6 @@ namespace MemoryWPF
                 OnPropertyChanged(nameof(CurrentImage));
             } 
         }
-        public ObservableCollection<UserModel> Users { get; set; }
         public object UsersOrAddUser
         {
             get { return _usersOrAddUser; }

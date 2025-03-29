@@ -17,9 +17,11 @@ namespace MemoryWPF
         private UserModel _user;
         private GameView _gameView;
         public ICommand NewGame { get; }
+        public ICommand Statistics { get; }
         public UserPageViewModel(UserModel user) {
             _user = user;
             NewGame = new RelayCommand(OnNewGameClick,CanStartGame);
+            Statistics = new RelayCommand(OnStatisticsClick);
             _rows = 4;
             _columns = 4;
         }
@@ -55,9 +57,13 @@ namespace MemoryWPF
                 OnPropertyChanged();
             }
         }
+        private void OnStatisticsClick(object obj) 
+        {
+            (new StatisticsView()).Show();
+        }
         private bool CanStartGame(object obj)
         {
-            return (_columns * _rows)%2 == 0;
+            return _columns < 7 && _rows < 7 && (_columns * _rows) % 2 == 0;
         }
         private void OnNewGameClick(object obj)
         {
