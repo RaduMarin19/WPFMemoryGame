@@ -155,6 +155,8 @@ namespace MemoryWPF
             {
                 string filePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + CurrentUser.Name + "User.json";
                 File.Delete(filePath);
+                filePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + CurrentUser.Name + "_Game.json";
+                File.Delete(filePath);
             }   
             catch { Console.WriteLine("Error removing file"); }
             Users.Remove(CurrentUser);
