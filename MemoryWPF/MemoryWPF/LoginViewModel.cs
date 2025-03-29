@@ -18,14 +18,12 @@ namespace MemoryWPF
 {
     public class LoginViewModel : BaseClass
     {
-        private MainWindow _mainWindow;
         private object _usersOrAddUser;
         private int _currentImageIndex;
         private string _username;
         private UserModel _currentUser;
         private List<String> _imagePaths;
         public ObservableCollection<UserModel> Users { get; set; }
-
         public ICommand LeftButtonClick { get; }
         public ICommand RightButtonClick { get; }
         public ICommand AddUser { get; }
@@ -34,9 +32,9 @@ namespace MemoryWPF
         public ICommand Cancel { get; }
         public ICommand Exit { get; }
         public ICommand Ok { get; }
-        public LoginViewModel(MainWindow mainWindow)
+        public event Action<UserModel> LoggedIn;
+        public LoginViewModel()
         {
-            _mainWindow = mainWindow;
             LoadImages();
             LeftButtonClick = new RelayCommand(OnLeftClick, CanChooseImage);
             RightButtonClick = new RelayCommand(OnRightClick, CanChooseImage);
@@ -149,7 +147,7 @@ namespace MemoryWPF
         }
         private void OnPlayClick(object obj)
         {
-            _mainWindow.CurrentView = new UserPageView(CurrentUser);
+            LoggedIn?.Invoke(CurrentUser);
         }
         private void OnRemoveUserClick(object obj)
         {

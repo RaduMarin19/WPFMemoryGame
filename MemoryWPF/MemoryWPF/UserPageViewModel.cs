@@ -18,10 +18,13 @@ namespace MemoryWPF
         private GameView _gameView;
         public ICommand NewGame { get; }
         public ICommand Statistics { get; }
+        public ICommand Exit {  get; }
+        public event Action ExitAction;
         public UserPageViewModel(UserModel user) {
             _user = user;
             NewGame = new RelayCommand(OnNewGameClick,CanStartGame);
             Statistics = new RelayCommand(OnStatisticsClick);
+            Exit = new RelayCommand(OnExitPressed,CanPressExit);
             _rows = 4;
             _columns = 4;
         }
@@ -56,6 +59,14 @@ namespace MemoryWPF
                 _user = value;
                 OnPropertyChanged();
             }
+        }
+        public void OnExitPressed(object obj)
+        {
+            ExitAction?.Invoke();
+        }
+        public bool CanPressExit(object obj)
+        {
+            return true;
         }
         private void OnStatisticsClick(object obj) 
         {

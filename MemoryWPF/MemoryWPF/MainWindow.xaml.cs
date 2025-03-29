@@ -34,9 +34,24 @@ namespace MemoryWPF
         {
             InitializeComponent();
             this.DataContext = this;
-            CurrentView = new LoginView(this);
-            //CurrentView = new UserPageView();
             AboutRadu = new RelayCommand(About);
+            _loginView = new LoginView();
+            if (_loginView.DataContext is LoginViewModel vm)
+            {
+                vm.LoggedIn += OnLoggedIn;
+            }
+            CurrentView = _loginView;
+        }
+        private void OnLoggedIn(UserModel user)
+        {
+            UserPageView userPage = new UserPageView(user);
+            ((UserPageViewModel)userPage.DataContext).ExitAction += ExitUserPage;
+
+            CurrentView= userPage;
+        }
+        private void ExitUserPage()
+        {
+            CurrentView = _loginView;
         }
 
         private void About(object obj)
@@ -45,7 +60,7 @@ namespace MemoryWPF
         }
 
         private object _currentView;
-
+        private LoginView _loginView;
         public ICommand AboutRadu { get; }
         
         public event PropertyChangedEventHandler? PropertyChanged;
