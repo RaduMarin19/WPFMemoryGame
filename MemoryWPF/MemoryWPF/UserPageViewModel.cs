@@ -22,7 +22,7 @@ namespace MemoryWPF
         public ICommand Statistics { get; }
         public ICommand Exit {  get; }
         public event Action ExitAction;
-        public event Action<int,int,UserModel> GameStarted;
+        public event Action<int,int,int,UserModel> GameStarted;
         public event Action SaveGameAction;
         public event Action<UserModel> LoadGameAction;
         public UserPageViewModel(UserModel user) {
@@ -103,7 +103,7 @@ namespace MemoryWPF
         }
         private void OnNewGameClick(object obj)
         {
-            GameStarted?.Invoke(Rows,Columns,User);
+            GameStarted?.Invoke(Rows,Columns,StartingTime,User);
             
         }
 

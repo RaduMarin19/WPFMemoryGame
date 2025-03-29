@@ -24,20 +24,19 @@ namespace MemoryWPF
         {
             InitializeComponent();
             this.Data = new GameViewModel(user);
-            Data.GameWon += OnGameWon;
+            Data.GameEnded += OnGameEnded;
             this.DataContext = Data;
         }
-        public GameView(int rows, int columns,UserModel user)
+        public GameView(int rows, int columns, int time, UserModel user)
         {
             InitializeComponent();
-            this.Data = new GameViewModel(rows,columns,user);
-            Data.GameWon += OnGameWon;
+            this.Data = new GameViewModel(rows,columns,time,user);
+            Data.GameEnded += OnGameEnded;
             this.DataContext = Data;
         }
         public GameViewModel Data { get; set; }
-        private void OnGameWon()
+        private void OnGameEnded()
         {
-            MessageBox.Show("You WON!");
             this.Close();
         }
     }

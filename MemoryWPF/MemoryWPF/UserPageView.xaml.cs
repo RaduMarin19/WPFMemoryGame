@@ -39,11 +39,13 @@ namespace MemoryWPF
         }
         private void OnSaveGame()
         {
+            if (_gameView == null)
+                return;
             ((GameViewModel)_gameView.DataContext).Save();
         }
-        private void OnGameStarted(int rows, int columns, UserModel user) 
+        private void OnGameStarted(int rows, int columns,int time, UserModel user) 
         {
-            _gameView = new GameView(rows, columns, user);
+            _gameView = new GameView(rows, columns,time, user);
             _gameView.Show();
         }
         

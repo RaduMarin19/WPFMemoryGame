@@ -11,6 +11,7 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using System.Xml.Linq;
 
 namespace MemoryWPF
@@ -20,6 +21,7 @@ namespace MemoryWPF
         public int Rows { get; set; }
         public int Columns { get; set; }
         public List<CardSaveModel> Cards { get; set; }
+        public int RemainingTime { get; set; }
     }
 
     public class CardSaveModel
@@ -35,24 +37,42 @@ namespace MemoryWPF
         private UserModel _user;
         private bool _isBusy = false;
         private int _rows;
-        private int _columns;
+        private int _columns; 
+        private DispatcherTimer _gameTimer;
+        private int _remainingTime;
+        private int _startingTime;
+        public event Action TimeExpired;
         public ObservableCollection<CardModel> Cards { get; set; }
         public ICommand CardClickCommand { get; }
-        public event Action GameWon;
+        public event Action GameEnded;
         public GameViewModel(UserModel user)
         {
             Cards = new ObservableCollection<CardModel>();
             CardClickCommand = new RelayCommand(OnCardClicked);
             _user = user;
+            StartTimer();
         }
-        public GameViewModel(int rows, int columns, UserModel user)
+        public GameViewModel(int rows, int columns, int time, UserModel user)
         {
             Cards = new ObservableCollection<CardModel>();
             Rows = rows;
             Columns = columns;
+            _startingTime = time;
             _user = user;
             CardClickCommand = new RelayCommand(OnCardClicked);
             LoadImages();
+            StartTimer();
+        }
+        public string TimerDisplay => TimeSpan.FromSeconds(_remainingTime).ToString(@"mm\:ss");
+
+        public int StartingTime
+        {
+            get { return _startingTime; }
+            set
+            {
+                _startingTime = value;
+                OnPropertyChanged();
+            }
         }
         public int Rows
         {
@@ -72,6 +92,39 @@ namespace MemoryWPF
                 OnPropertyChanged();
             }
         }
+        private void StartTimer()
+        {
+            _remainingTime = StartingTime;
+            OnPropertyChanged(nameof(TimerDisplay));
+
+            _gameTimer = new DispatcherTimer();
+            _gameTimer.Interval = TimeSpan.FromSeconds(1);
+            _gameTimer.Tick += OnTimerTick;
+            _gameTimer.Start();
+        }
+
+        private void StopTimer()
+        {
+            if (_gameTimer != null)
+            {
+                _gameTimer.Stop();
+                _gameTimer.Tick -= OnTimerTick;
+                _gameTimer = null;
+            }
+        }
+
+        private void OnTimerTick(object sender, EventArgs e)
+        {
+            _remainingTime--;
+            OnPropertyChanged(nameof(TimerDisplay));
+
+            if (_remainingTime <= 0)
+            {
+                StopTimer();
+                MessageBox.Show("Time is up! You lost!");
+                GameEnded?.Invoke();
+            }
+        }
         public void LoadSave()
         {
             string fileName = _user.Name + "_Game.json";
@@ -84,6 +137,7 @@ namespace MemoryWPF
                 {
                     Rows = saveData.Rows;
                     Columns = saveData.Columns;
+                    _remainingTime = saveData.RemainingTime;
                     Cards.Clear();
 
                     foreach (var cardData in saveData.Cards)
@@ -102,6 +156,7 @@ namespace MemoryWPF
             {
                 Rows = this.Rows,
                 Columns = this.Columns,
+                RemainingTime = this._remainingTime,
                 Cards = Cards.Select(c => new CardSaveModel
                 {
                     RealImage = c.RealImage,
@@ -113,6 +168,8 @@ namespace MemoryWPF
             string fileName = _user.Name + "_Game.json";
             var json = JsonSerializer.Serialize(saveData, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(fileName, json);
+            _gameTimer.Stop();
+            GameEnded?.Invoke();
         }
         private void LoadImages()
         {
@@ -168,7 +225,7 @@ namespace MemoryWPF
                         _user.GamesWon++;
                         _user.GamesPlayed++;
                         _user.Save();
-                        GameWon?.Invoke();
+                        GameEnded?.Invoke();
                     }
                 }
                 else
