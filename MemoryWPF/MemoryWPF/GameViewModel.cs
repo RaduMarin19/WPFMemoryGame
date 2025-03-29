@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace MemoryWPF
 {
-    public class GameViewModel : INotifyPropertyChanged
+    public class GameViewModel : BaseClass
     {
         private List<string> _imagePaths;
         private CardModel _firstFlippedCard;
@@ -131,12 +131,6 @@ namespace MemoryWPF
         {
             var rnd = new Random();
             _imagePaths = _imagePaths.OrderBy(x => rnd.Next()).ToList();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

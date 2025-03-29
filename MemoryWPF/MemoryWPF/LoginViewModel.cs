@@ -16,7 +16,7 @@ using System.Text.Json;
 
 namespace MemoryWPF
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : BaseClass
     {
         private MainWindow _mainWindow;
         private object _usersOrAddUser;
@@ -207,12 +207,6 @@ namespace MemoryWPF
                 _currentImageIndex = 0;
             }
             OnPropertyChanged(nameof(CurrentImage));
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

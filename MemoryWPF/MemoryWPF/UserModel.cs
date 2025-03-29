@@ -10,8 +10,12 @@ using System.Threading.Tasks;
 
 namespace MemoryWPF
 {
-    public class UserModel : INotifyPropertyChanged
+    public class UserModel : BaseClass
     {
+        public string ImagePath { get; set; }
+        private int _gamesPlayed;
+        private int _gamesWon;
+        private String _name;
         public UserModel(string name, string imagePath)
         {
             _name = name;
@@ -56,16 +60,6 @@ namespace MemoryWPF
             string fileName = Name + "User.json";
             FileStream createStream = File.Create(fileName);
             JsonSerializer.SerializeAsync(createStream, this);
-        }
-        public string ImagePath { get; set; }
-        private int _gamesPlayed;
-        private int _gamesWon;
-        private String _name;
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -14,22 +14,45 @@
             <RowDefinition/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <DockPanel Grid.Column="0" Background="Gray">
-                <Menu DockPanel.Dock="Top" Background="Gray">
-                    <MenuItem Header="Category">
-                        <MenuItem Header="Breaking bad"/>
-                        <MenuItem Header="Breaking bad"/>
-                        <MenuItem Header="Breaking bad"/>
-                    </MenuItem>
-                </Menu>
-            </DockPanel>
-            <Image Grid.Column="1" Source="{Binding User.ImagePath, Converter={StaticResource PathToImageConverter}}" Width="200" Height="200" Stretch="Uniform"/>
-        </Grid>
+        <Border BorderBrush="DarkOliveGreen" BorderThickness="50">
+             <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="{Binding User.Name}" Margin="20" FontSize="15" FontWeight="Medium"/>
+                    <Grid  Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Grid.Row="0" Text="Category:" Margin="6" FontSize="11" FontWeight="Medium"/>
+                            <RadioButton GroupName="Category" Content="Breaking Bad" Margin="6"/>
+                            <RadioButton GroupName="Category" Content="Breaking Bad" Margin="6"/>
+                            <RadioButton GroupName="Category" Content="Breaking Bad" Margin="6"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Grid.Row="0" Text="Options:" Margin="6" FontSize="11" FontWeight="Medium"/>
+                            <WrapPanel>
+                                <TextBlock Text="Rows:     " Margin="6"/>
+                                <TextBox Text="{Binding Rows}" Width="50" Margin="6"/>
+                            </WrapPanel>
+                            <WrapPanel>
+                                <TextBlock Text="Columns:" Margin="6"/>
+                                <TextBox Text="{Binding Columns}" Width="50" Margin="6"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+                <Image Grid.Column="1" Source="{Binding User.ImagePath, Converter={StaticResource PathToImageConverter}}" Width="200" Height="200" Stretch="Uniform"/>
+            </Grid>
+        </Border>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

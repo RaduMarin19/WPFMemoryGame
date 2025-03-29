@@ -37,6 +37,7 @@
     <None Remove="Images\game_breaking_bad\breaking_bad.jpg" />
     <None Remove="Images\game_breaking_bad\Jesse And Jane.jpeg" />
     <None Remove="Images\game_breaking_bad\mike ehrmantraut.jpeg" />
+    <None Remove="Images\green_question.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -113,6 +114,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\game_breaking_bad\mike ehrmantraut.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\green_question.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

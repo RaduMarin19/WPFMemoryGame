@@ -18,12 +18,14 @@ namespace MemoryWPF
     /// <summary>
     /// Interaction logic for GameView.xaml
     /// </summary>
-    public partial class GameView : UserControl
+    public partial class GameView : Window
     {
         public GameView()
         {
             InitializeComponent();
-            this.DataContext = new GameViewModel();
+            this.Data = new GameViewModel();
+            this.DataContext = Data;
         }
+        public GameViewModel Data { get; set; }
     }
 }

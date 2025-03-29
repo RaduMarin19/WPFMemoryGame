@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MemoryWPF
 {
-    public class CardModel : INotifyPropertyChanged
+    public class CardModel : BaseClass
     {
         private bool _isFlipped;
         private bool _isMatched;
@@ -24,7 +24,7 @@ namespace MemoryWPF
                     string imageFolder = Path.Combine(
                         Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
                         "Images");
-                    return Path.Combine(imageFolder, "back.jpg");
+                    return Path.Combine(imageFolder, "green_question.png");
                 }
                 return _imagePath;
             }
@@ -57,12 +57,6 @@ namespace MemoryWPF
                 _isMatched = value;
                 OnPropertyChanged();
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
