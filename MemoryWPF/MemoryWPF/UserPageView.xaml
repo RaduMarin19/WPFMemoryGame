@@ -15,7 +15,7 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Border BorderBrush="DarkOliveGreen" BorderThickness="50">
-             <Grid Grid.Row="0">
+            <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -24,6 +24,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="{Binding User.Name}" Margin="20" FontSize="15" FontWeight="Medium"/>
                     <Grid  Grid.Row="1">
@@ -48,6 +49,12 @@
                                 <TextBox Text="{Binding Columns}" Width="50" Margin="6"/>
                             </WrapPanel>
                         </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <WrapPanel>
+                            <TextBlock Text="Time(s):" Margin="6"/>
+                            <TextBox Text="{Binding StartingTime}" Width="50" Margin="6"/>
+                        </WrapPanel>
                     </Grid>
                 </Grid>
                 <Image Grid.Column="1" Source="{Binding User.ImagePath, Converter={StaticResource PathToImageConverter}}" Width="200" Height="200" Stretch="Uniform"/>

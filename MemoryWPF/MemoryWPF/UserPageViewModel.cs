@@ -14,12 +14,13 @@ namespace MemoryWPF
     {
         private int _rows;
         private int _columns;
+        private int _startingTime;
         private UserModel _user;
-        private GameView _gameView;
         public ICommand NewGame { get; }
         public ICommand Statistics { get; }
         public ICommand Exit {  get; }
         public event Action ExitAction;
+        public event Action<int,int,UserModel> GameStarted;
         public UserPageViewModel(UserModel user) {
             _user = user;
             NewGame = new RelayCommand(OnNewGameClick,CanStartGame);
@@ -27,6 +28,7 @@ namespace MemoryWPF
             Exit = new RelayCommand(OnExitPressed,CanPressExit);
             _rows = 4;
             _columns = 4;
+            _startingTime = 60;
         }
         public int Rows { 
             get
@@ -48,6 +50,15 @@ namespace MemoryWPF
                 _columns = value;
                 OnPropertyChanged();
                 ((RelayCommand)NewGame).RaiseCanExecuteChanged();
+            }
+        }
+        public int StartingTime
+        {
+            get { return _startingTime; }
+            set
+            {
+                _startingTime = value;
+                OnPropertyChanged();
             }
         }
         public UserModel User
@@ -74,12 +85,12 @@ namespace MemoryWPF
         }
         private bool CanStartGame(object obj)
         {
-            return _columns < 7 && _rows < 7 && (_columns * _rows) % 2 == 0;
+            return _columns < 7 && _rows < 7 && (_columns * _rows) % 2 == 0 && StartingTime != 0;
         }
         private void OnNewGameClick(object obj)
         {
-            _gameView=new GameView(Rows, Columns,_user);
-            _gameView.Show();
+            GameStarted?.Invoke(Rows,Columns,User);
+            
         }
 
     }

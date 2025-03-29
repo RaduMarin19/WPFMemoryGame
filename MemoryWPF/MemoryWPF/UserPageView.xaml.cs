@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -20,10 +21,19 @@ namespace MemoryWPF
     /// </summary>
     public partial class UserPageView : UserControl
     {
+        private GameView _gameView;
         public UserPageView(UserModel user)
         {
-            this.DataContext = new UserPageViewModel(user);
+            UserPageViewModel userPage = new UserPageViewModel(user);
+            userPage.GameStarted += OnGameStarted;
+            this.DataContext = userPage;
             InitializeComponent();
         }
+        private void OnGameStarted(int rows, int columns, UserModel user) 
+        {
+            _gameView = new GameView(rows, columns, user);
+            _gameView.Show();
+        }
+        
     }
 }
