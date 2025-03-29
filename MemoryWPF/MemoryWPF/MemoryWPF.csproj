@@ -37,13 +37,52 @@
     <None Remove="Images\game_breaking_bad\breaking_bad.jpg" />
     <None Remove="Images\game_breaking_bad\Jesse And Jane.jpeg" />
     <None Remove="Images\game_breaking_bad\mike ehrmantraut.jpeg" />
+    <None Remove="Images\game_peaky_blinders\00ee02f8-2319-4a4e-a6cf-5fe351ad1124.jpeg" />
+    <None Remove="Images\game_peaky_blinders\5d3c8a8d-2cb6-436c-9c54-2fcb794f0825.jpeg" />
+    <None Remove="Images\game_peaky_blinders\6d6a280e-974a-4cd5-8c7e-2c4f7af8f661.jpeg" />
+    <None Remove="Images\game_peaky_blinders\9024dbc7-f05d-4f51-a786-969194e23b34.jpeg" />
+    <None Remove="Images\game_peaky_blinders\alfiesolomons.png" />
+    <None Remove="Images\game_peaky_blinders\b857badb-5487-4132-b9e1-4c69aea76328.jpeg" />
+    <None Remove="Images\game_peaky_blinders\ChatGPT Image Mar 29, 2025, 06_32_19 PM.png" />
+    <None Remove="Images\game_peaky_blinders\donno.png" />
+    <None Remove="Images\game_peaky_blinders\e.png" />
+    <None Remove="Images\game_peaky_blinders\pb.png" />
+    <None Remove="Images\game_peaky_blinders\Peaky Blinders _ Birmingham.jpeg" />
+    <None Remove="Images\game_peaky_blinders\Peaky blinders.jpeg" />
+    <None Remove="Images\game_peaky_blinders\peaky2.png" />
+    <None Remove="Images\game_peaky_blinders\peaky3.png" />
+    <None Remove="Images\game_peaky_blinders\Peakyblinders on Instagram_ _Golden 💛 follow….jpeg" />
+    <None Remove="Images\game_peaky_blinders\Thomas Michael «Tommy» Shelby.jpeg" />
+    <None Remove="Images\game_peaky_blinders\tomm.png" />
+    <None Remove="Images\game_peaky_blinders\Tommy &amp; Grace.jpeg" />
+    <None Remove="Images\game_romanian_city\3341b5b3-d3d7-444f-ac18-2684bfe55cd2.jpeg" />
+    <None Remove="Images\game_romanian_city\5a562af8-d76b-443a-b898-3e3088da060b.jpeg" />
+    <None Remove="Images\game_romanian_city\Account Suspended.jpeg" />
+    <None Remove="Images\game_romanian_city\Chindiei Tower %28The Tower of Dawn%29, Targoviste….jpeg" />
+    <None Remove="Images\game_romanian_city\Corvin Castle in Hunedoara, Romania.jpeg" />
+    <None Remove="Images\game_romanian_city\Cotroceni palace Bucharest %28Palatul Muzeu Cotroceni%29.jpeg" />
+    <None Remove="Images\game_romanian_city\Deva, Romania.jpeg" />
+    <None Remove="Images\game_romanian_city\download %281%29.jpeg" />
+    <None Remove="Images\game_romanian_city\download %282%29.jpeg" />
+    <None Remove="Images\game_romanian_city\download.jpeg" />
+    <None Remove="Images\game_romanian_city\Geological Institute &amp; Museum in Bucharest Romania.jpeg" />
+    <None Remove="Images\game_romanian_city\Herastrau park, Bucharest.jpeg" />
+    <None Remove="Images\game_romanian_city\images.jpeg" />
+    <None Remove="Images\game_romanian_city\Petit Cabinet de Curiosites.jpeg" />
+    <None Remove="Images\game_romanian_city\Romanian Athenaeum interior.jpeg" />
+    <None Remove="Images\game_romanian_city\Sibiu.jpeg" />
+    <None Remove="Images\game_romanian_city\Vâlcea are două „Meteore” – sfintele mănăstiri Arnota şi Vârful Romani - Ramnicu Valcea Week.jpeg" />
+    <None Remove="Images\game_romanian_city\Zece mănăstiri de neratat într-o viaţă_ Cele mai frumoase lucruri păstrate în locurile sfinte ale românilor.jpeg" />
     <None Remove="Images\green_question.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\back.jpg">
+    <Content Include="Images\game_romanian_city\Deva, Romania.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Images\breakingbad\GusFring.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -114,6 +153,111 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\game_breaking_bad\mike ehrmantraut.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\00ee02f8-2319-4a4e-a6cf-5fe351ad1124.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\5d3c8a8d-2cb6-436c-9c54-2fcb794f0825.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\6d6a280e-974a-4cd5-8c7e-2c4f7af8f661.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\9024dbc7-f05d-4f51-a786-969194e23b34.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\alfiesolomons.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\b857badb-5487-4132-b9e1-4c69aea76328.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\ChatGPT Image Mar 29, 2025, 06_32_19 PM.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\donno.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\e.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\pb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\Peaky Blinders _ Birmingham.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\Peaky blinders.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\peaky2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\peaky3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\Peakyblinders on Instagram_ _Golden 💛 follow….jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\Thomas Michael «Tommy» Shelby.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\tomm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_peaky_blinders\Tommy &amp; Grace.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\3341b5b3-d3d7-444f-ac18-2684bfe55cd2.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\5a562af8-d76b-443a-b898-3e3088da060b.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\Account Suspended.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\Chindiei Tower (The Tower of Dawn), Targoviste….jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\Corvin Castle in Hunedoara, Romania.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\Cotroceni palace Bucharest (Palatul Muzeu Cotroceni).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\download (1).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\download (2).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\download.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\Geological Institute &amp; Museum in Bucharest Romania.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\Herastrau park, Bucharest.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\images.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\Petit Cabinet de Curiosites.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\Romanian Athenaeum interior.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\Sibiu.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\Vâlcea are două „Meteore” – sfintele mănăstiri Arnota şi Vârful Romani - Ramnicu Valcea Week.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\game_romanian_city\Zece mănăstiri de neratat într-o viaţă_ Cele mai frumoase lucruri păstrate în locurile sfinte ale românilor.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\green_question.png">

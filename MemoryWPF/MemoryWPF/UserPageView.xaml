@@ -33,10 +33,10 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
-                            <TextBlock Grid.Row="0" Text="Category:" Margin="6" FontSize="11" FontWeight="Medium"/>
-                            <RadioButton GroupName="Category" Content="Breaking Bad" Margin="6"/>
-                            <RadioButton GroupName="Category" Content="Breaking Bad" Margin="6"/>
-                            <RadioButton GroupName="Category" Content="Breaking Bad" Margin="6"/>
+                            <TextBlock Text="Category:" Margin="6" FontSize="11" FontWeight="Medium"/>
+                            <RadioButton x:Name="rbBreakingBad" GroupName="Category" Content="Breaking Bad" Margin="6"/>
+                            <RadioButton x:Name="rbPeakyBlinders" GroupName="Category" Content="Peaky Blinders" Margin="6"/>
+                            <RadioButton x:Name="rbRomanianCity" GroupName="Category" Content="Romanian Cities" Margin="6"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1">
                             <TextBlock Grid.Row="0" Text="Options:" Margin="6" FontSize="11" FontWeight="Medium"/>

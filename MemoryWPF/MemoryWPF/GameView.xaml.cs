@@ -27,10 +27,10 @@ namespace MemoryWPF
             Data.GameEnded += OnGameEnded;
             this.DataContext = Data;
         }
-        public GameView(int rows, int columns, int time, UserModel user)
+        public GameView(int rows, int columns,string selectedCategory, int time, UserModel user)
         {
             InitializeComponent();
-            this.Data = new GameViewModel(rows,columns,time,user);
+            this.Data = new GameViewModel(rows,columns,selectedCategory,time,user);
             Data.GameEnded += OnGameEnded;
             this.DataContext = Data;
         }

@@ -45,7 +45,16 @@ namespace MemoryWPF
         }
         private void OnGameStarted(int rows, int columns,int time, UserModel user) 
         {
-            _gameView = new GameView(rows, columns,time, user);
+            string selectedCategory = null;
+
+            if (rbBreakingBad.IsChecked == true)
+                selectedCategory = "game_breaking_bad";
+            else if (rbPeakyBlinders.IsChecked == true)
+                selectedCategory = "game_peaky_blinders";
+            else if (rbRomanianCity.IsChecked == true)
+                selectedCategory = "game_romanian_city";
+            else return;
+            _gameView = new GameView(rows, columns,selectedCategory,time, user);
             _gameView.Show();
         }
         

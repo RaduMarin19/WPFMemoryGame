@@ -22,6 +22,7 @@ namespace MemoryWPF
         public int Columns { get; set; }
         public List<CardSaveModel> Cards { get; set; }
         public int RemainingTime { get; set; }
+        public string SelectedCategory { get; set; }
     }
 
     public class CardSaveModel
@@ -41,6 +42,7 @@ namespace MemoryWPF
         private DispatcherTimer _gameTimer;
         private int _remainingTime;
         private int _startingTime;
+        private string _selectedCategory;
         public event Action TimeExpired;
         public ObservableCollection<CardModel> Cards { get; set; }
         public ICommand CardClickCommand { get; }
@@ -52,13 +54,14 @@ namespace MemoryWPF
             _user = user;
             StartTimer();
         }
-        public GameViewModel(int rows, int columns, int time, UserModel user)
+        public GameViewModel(int rows, int columns,string selectedCategory, int time, UserModel user)
         {
             Cards = new ObservableCollection<CardModel>();
             Rows = rows;
             Columns = columns;
             _startingTime = time;
             _user = user;
+            _selectedCategory = selectedCategory;
             CardClickCommand = new RelayCommand(OnCardClicked);
             LoadImages();
             StartTimer();
@@ -140,6 +143,7 @@ namespace MemoryWPF
                     Rows = saveData.Rows;
                     Columns = saveData.Columns;
                     _remainingTime = saveData.RemainingTime;
+                    _selectedCategory = saveData.SelectedCategory;
                     Cards.Clear();
 
                     foreach (var cardData in saveData.Cards)
@@ -158,6 +162,7 @@ namespace MemoryWPF
             {
                 Rows = this.Rows,
                 Columns = this.Columns,
+                SelectedCategory = this._selectedCategory,
                 RemainingTime = this._remainingTime,
                 Cards = Cards.Select(c => new CardSaveModel
                 {
@@ -177,10 +182,10 @@ namespace MemoryWPF
         {
             string imageFolder = System.IO.Path.Combine(
                 System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-                "Images\\game_breaking_bad");
+                "Images\\" + _selectedCategory);
             if (Directory.Exists(imageFolder))
             {
-                var allImages = Directory.GetFiles(imageFolder, "*.jpeg").ToList();
+                var allImages = Directory.GetFiles(imageFolder, "*.*").ToList();
                 int numberOfPairs = (Rows * Columns) / 2;
                 _imagePaths = allImages.Take(numberOfPairs).ToList();
             }
@@ -228,6 +233,7 @@ namespace MemoryWPF
                         _user.GamesPlayed++;
                         _user.Save();
                         _gameTimer.Stop();
+                        MessageBox.Show("You Won!");
                         GameEnded?.Invoke();
                     }
                 }

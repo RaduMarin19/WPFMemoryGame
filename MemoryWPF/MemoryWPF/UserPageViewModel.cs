@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
@@ -104,7 +105,6 @@ namespace MemoryWPF
         private void OnNewGameClick(object obj)
         {
             GameStarted?.Invoke(Rows,Columns,StartingTime,User);
-            
         }
 
     }
