@@ -17,15 +17,21 @@ namespace MemoryWPF
         private int _startingTime;
         private UserModel _user;
         public ICommand NewGame { get; }
+        public ICommand SaveGame { get; }
+        public ICommand LoadGame { get; }
         public ICommand Statistics { get; }
         public ICommand Exit {  get; }
         public event Action ExitAction;
         public event Action<int,int,UserModel> GameStarted;
+        public event Action SaveGameAction;
+        public event Action<UserModel> LoadGameAction;
         public UserPageViewModel(UserModel user) {
             _user = user;
             NewGame = new RelayCommand(OnNewGameClick,CanStartGame);
             Statistics = new RelayCommand(OnStatisticsClick);
             Exit = new RelayCommand(OnExitPressed,CanPressExit);
+            SaveGame = new RelayCommand(OnSaveGameClick);
+            LoadGame = new RelayCommand(OnLoadGameClick);
             _rows = 4;
             _columns = 4;
             _startingTime = 60;
@@ -86,6 +92,14 @@ namespace MemoryWPF
         private bool CanStartGame(object obj)
         {
             return _columns < 7 && _rows < 7 && (_columns * _rows) % 2 == 0 && StartingTime != 0;
+        }
+        private void OnLoadGameClick(object obj)
+        {
+            LoadGameAction?.Invoke(_user);
+        }
+        private void OnSaveGameClick(object obj)
+        {
+            SaveGameAction?.Invoke();
         }
         private void OnNewGameClick(object obj)
         {

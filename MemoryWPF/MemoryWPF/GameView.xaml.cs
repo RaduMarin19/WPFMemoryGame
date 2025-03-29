@@ -20,6 +20,13 @@ namespace MemoryWPF
     /// </summary>
     public partial class GameView : Window
     {
+        public GameView(UserModel user)
+        {
+            InitializeComponent();
+            this.Data = new GameViewModel(user);
+            Data.GameWon += OnGameWon;
+            this.DataContext = Data;
+        }
         public GameView(int rows, int columns,UserModel user)
         {
             InitializeComponent();

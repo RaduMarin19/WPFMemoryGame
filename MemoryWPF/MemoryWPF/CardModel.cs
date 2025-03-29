@@ -14,23 +14,40 @@ namespace MemoryWPF
     {
         private bool _isFlipped;
         private bool _isMatched;
+        private string _realImage;
         private string _imagePath;
+        public CardModel(bool isFlipped, bool isMatched, string imagePath)
+        {
+            string imageFolder = Path.Combine(
+            Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+            "Images");
+            _imagePath = Path.Combine(imageFolder, "green_question.png");
+            _isFlipped = isFlipped;
+            _isMatched = isMatched;
+            _realImage = imagePath;
+        }
         public string ImagePath
         {
             get
             {
                 if (!IsFlipped)
                 {
-                    string imageFolder = Path.Combine(
-                        Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-                        "Images");
-                    return Path.Combine(imageFolder, "green_question.png");
+                    return _imagePath;
                 }
-                return _imagePath;
+                return _realImage;
             }
             set
             {
                 _imagePath = value;
+                OnPropertyChanged();
+            }
+        }
+        public string RealImage
+        {
+            get { return _realImage; }
+            set
+            {
+                _realImage = value;
                 OnPropertyChanged();
             }
         }

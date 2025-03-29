@@ -69,7 +69,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="New Game" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding NewGame}"/>
-            <Button Grid.Column="1" Content="Open Game" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding OpenGame}"/>
+            <Button Grid.Column="1" Content="Open Game" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding LoadGame}"/>
             <Button Grid.Column="2" Content="Save Game" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding SaveGame}"/>
             <Button Grid.Column="3" Content="Statistics" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding Statistics}"/>
             <Button Grid.Column="4" Content="Exit" Width="80" Padding="4" Margin="10" Background="DarkOliveGreen" Command="{Binding Exit}"/>

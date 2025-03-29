@@ -26,8 +26,20 @@ namespace MemoryWPF
         {
             UserPageViewModel userPage = new UserPageViewModel(user);
             userPage.GameStarted += OnGameStarted;
+            userPage.SaveGameAction += OnSaveGame;
+            userPage.LoadGameAction += OnLoadGame;
             this.DataContext = userPage;
             InitializeComponent();
+        }
+        private void OnLoadGame(UserModel user)
+        {
+            _gameView = new GameView(user);
+            ((GameViewModel)_gameView.DataContext).LoadSave();
+            _gameView.Show();
+        }
+        private void OnSaveGame()
+        {
+            ((GameViewModel)_gameView.DataContext).Save();
         }
         private void OnGameStarted(int rows, int columns, UserModel user) 
         {
