@@ -20,7 +20,8 @@ namespace MemoryWPF
         public UserPageViewModel(UserModel user) {
             _user = user;
             NewGame = new RelayCommand(OnNewGameClick,CanStartGame);
-            _gameView = new GameView();
+            _rows = 4;
+            _columns = 4;
         }
         public int Rows { 
             get
@@ -30,8 +31,8 @@ namespace MemoryWPF
             set
             { 
                 _rows = value; 
-                OnPropertyChanged(); 
-                _gameView.Data.Rows = _rows;
+                OnPropertyChanged();
+                ((RelayCommand)NewGame).RaiseCanExecuteChanged();
             } 
         }
         public int Columns
@@ -41,7 +42,7 @@ namespace MemoryWPF
             {
                 _columns = value;
                 OnPropertyChanged();
-                _gameView.Data.Columns = _columns;
+                ((RelayCommand)NewGame).RaiseCanExecuteChanged();
             }
         }
         public UserModel User
@@ -60,6 +61,7 @@ namespace MemoryWPF
         }
         private void OnNewGameClick(object obj)
         {
+            _gameView=new GameView(Rows, Columns,_user);
             _gameView.Show();
         }
 

@@ -58,8 +58,8 @@ namespace MemoryWPF
         public void Save()
         {
             string fileName = Name + "User.json";
-            FileStream createStream = File.Create(fileName);
-            JsonSerializer.SerializeAsync(createStream, this);
+            var json = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(fileName, json);
         }
     }
 }

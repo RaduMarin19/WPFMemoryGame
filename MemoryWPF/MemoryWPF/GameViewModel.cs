@@ -17,16 +17,19 @@ namespace MemoryWPF
     {
         private List<string> _imagePaths;
         private CardModel _firstFlippedCard;
+        private UserModel _user;
         private bool _isBusy = false;
         private int _rows;
         private int _columns;
         public ObservableCollection<CardModel> Cards { get; set; }
         public ICommand CardClickCommand { get; }
-        public GameViewModel()
+        public event Action GameWon;
+        public GameViewModel(int rows, int columns, UserModel user)
         {
             Cards = new ObservableCollection<CardModel>();
-            Rows = 4;
-            Columns = 4;
+            Rows = rows;
+            Columns = columns;
+            _user = user;
             CardClickCommand = new RelayCommand(OnCardClicked);
             LoadImages();
         }
@@ -102,6 +105,13 @@ namespace MemoryWPF
                     _firstFlippedCard.IsMatched = true;
                     _firstFlippedCard = null;
                     _isBusy = false;
+                    if (CheckWin())
+                    {
+                        _user.GamesWon++;
+                        _user.GamesPlayed++;
+                        _user.Save();
+                        GameWon?.Invoke();
+                    }
                 }
                 else
                 {
@@ -110,10 +120,6 @@ namespace MemoryWPF
                     _firstFlippedCard.IsFlipped = false;
                     _firstFlippedCard = null;
                     _isBusy = false;
-                    if (CheckWin())
-                    {
-
-                    }
                 }
             }
         }
