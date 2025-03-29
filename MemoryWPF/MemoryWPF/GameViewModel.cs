@@ -122,6 +122,8 @@ namespace MemoryWPF
             {
                 StopTimer();
                 MessageBox.Show("Time is up! You lost!");
+                _user.GamesPlayed++;
+                _user.Save();
                 GameEnded?.Invoke();
             }
         }
@@ -225,6 +227,7 @@ namespace MemoryWPF
                         _user.GamesWon++;
                         _user.GamesPlayed++;
                         _user.Save();
+                        _gameTimer.Stop();
                         GameEnded?.Invoke();
                     }
                 }
